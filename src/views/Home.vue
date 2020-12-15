@@ -10,7 +10,7 @@
       <ion-header collapse="condense">
         <ion-toolbar>
 
-          <ion-title size="large">I like your moms titties</ion-title>
+          <ion-title size="large">Hello my friend</ion-title>
 
         </ion-toolbar>
       </ion-header>
