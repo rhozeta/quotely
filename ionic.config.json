@@ -1,0 +1,7 @@
+{
+  "name": "quotely",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
