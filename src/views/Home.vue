@@ -17,16 +17,16 @@
 
       <ion-grid>
         <ion-row>
-          <ion-col>
+          <ion-col class="ion-align-self-end">
             Job 1
           </ion-col>
-          <ion-col>
+          <ion-col class="ion-align-self-end">
             Job 2
           </ion-col>
-          <ion-col>
+          <ion-col class="ion-align-self-center">
             Job 3
           </ion-col>
-          <ion-col>
+          <ion-col class="ion-align-self-center">
             Job 4
           </ion-col>
         </ion-row>
