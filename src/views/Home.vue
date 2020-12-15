@@ -9,7 +9,7 @@
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">QUOTELY</ion-title>
+          <ion-title size="large">I like your mom</ion-title>
         </ion-toolbar>
       </ion-header>
     
