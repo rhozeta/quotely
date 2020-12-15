@@ -15,7 +15,7 @@
     
       <div id="container">
         <strong>Ready to create an app?</strong>
-        <p>Start with these nuts<a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+        <p>Start with these tacos<a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
       </div>
     </ion-content>
   </ion-page>
