@@ -21,14 +21,14 @@
       <ion-grid>
         <ion-row>
           <ion-col class="ion-align-self-end">
-            <ion-card v-for="job in jobsList" :key="job">
+            <ion-card v-for="job in jobsList" :key="job" v-bind:value="{jobName: job.name, jobId: job.id}">
               <ion-item>
                 <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>{{ job }}</ion-label>
-                <ion-button v-on:click="jobs" fill="outline" slot="end">View</ion-button>
+                <ion-label><span>{{ job.name }}</span></ion-label>
+                <ion-button v-on:click="jobs(job.name)" fill="outline" slot="end">View</ion-button>
               </ion-item>
               <ion-card-content>
-                5 quotes, last updated yesterday.
+                5 quotes, last updated {{job.updated}}
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -69,16 +69,26 @@
       IonGrid,
       IonRow
     },
+
     methods: {
-      jobs() {
+      jobs(job: string) {
         this.$router.push({
-          name: 'Jobs'
+          name: 'Jobs',
+          params: {jobName: job}
         })
+      console.log(job)
       }
     },
     data() {
-    return {
-      jobsList: ['Job 1', 'Job 2', 'Job 3', 'Job 4']
+      return {
+        jobsList: [
+          {id:1, name:"Job 1", updated:"2020-10-24 12:10PM"},
+          {id:2, name:"Job 2", updated:"2020-10-24 12:10PM"},
+          {id:3, name:"Job 3", updated:"2020-10-24 12:10PM"},
+          {id:4, name:"Job 4", updated:"2020-10-24 12:10PM"},
+        
+        ],
+        selectedJob: {}
     }
   }
   });

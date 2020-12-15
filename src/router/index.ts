@@ -18,6 +18,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/jobs',
     name: 'Jobs',
     component: Jobs
+   
   },
   {
     path: '/quote',

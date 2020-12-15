@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>Job Name</ion-title>
+        <ion-title>{{ jobName }}</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -72,9 +72,11 @@
         this.$router.push({name: 'Quote'})
       }
     },
+
     data() {
       return {
-        quoteList: ['Quote 1', 'Quote 2', 'Quote 3', 'Quote 4']
+        quoteList: ['Quote 1', 'Quote 2', 'Quote 3', 'Quote 4'],
+        jobName: this.$route.params.jobName
     }
   }
   });

@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>Job Name</ion-title>
+        <ion-title>Quote</ion-title>
       </ion-toolbar>
     </ion-header>
 
