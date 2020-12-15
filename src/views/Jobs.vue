@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>All Jobs</ion-title>
+        <ion-title>Job Name</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -17,60 +17,21 @@
 
       <!-- Search Bar -->
       <ion-searchbar animated></ion-searchbar>
-
+      
       <ion-grid>
         <ion-row>
           <ion-col class="ion-align-self-end">
-            <ion-card>
-              <ion-item>
-                <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>Job 1</ion-label>
-                <ion-button v-on:click="jobs" fill="outline" slot="end">View</ion-button>
-              </ion-item>
-
-              <ion-card-content>
-                 5 quotes, last updated yesterday.
-              </ion-card-content>
-            </ion-card>
+            Quote 1
+            
           </ion-col>
           <ion-col class="ion-align-self-end">
-             <ion-card>
-              <ion-item>
-                <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>Job 2</ion-label>
-                <ion-button fill="outline" slot="end">View</ion-button>
-              </ion-item>
-
-              <ion-card-content>
-                 5 quotes, last updated yesterday.
-              </ion-card-content>
-            </ion-card>
+            Quote 2
           </ion-col>
           <ion-col class="ion-align-self-center">
-              <ion-card>
-              <ion-item>
-                <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>Job 3</ion-label>
-                <ion-button fill="outline" slot="end">View</ion-button>
-              </ion-item>
-
-              <ion-card-content>
-                 5 quotes, last updated yesterday.
-              </ion-card-content>
-            </ion-card>
+            Quote 3
           </ion-col>
           <ion-col class="ion-align-self-center">
-              <ion-card>
-              <ion-item>
-                <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>Job 4</ion-label>
-                <ion-button fill="outline" slot="end">View</ion-button>
-              </ion-item>
-
-              <ion-card-content>
-                 5 quotes, last updated yesterday.
-              </ion-card-content>
-            </ion-card>
+            Quote 4
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -85,7 +46,6 @@
 </template>
 
 <script lang="ts">
-  
   import {
     IonContent,
     IonHeader,
@@ -99,9 +59,6 @@
   import {
     defineComponent
   } from 'vue';
-  import Vue from 'vue'
-  import VueRouter from 'vue-router'
-
 
   export default defineComponent({
     name: 'Home',
@@ -114,16 +71,8 @@
       IonCol,
       IonGrid,
       IonRow
-    },
-    methods: {
-      jobs() {
-        this.$router.push({name: 'Jobs'})
-      }
     }
   });
-  
-
-
 </script>
 
 <style scoped>
