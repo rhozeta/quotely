@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>All Jobs</ion-title>
+        <ion-title>Job Name</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -17,23 +17,24 @@
 
       <!-- Search Bar -->
       <ion-searchbar animated></ion-searchbar>
-
+      
       <ion-grid>
         <ion-row>
           <ion-col class="ion-align-self-end">
-            <ion-card v-for="job in jobsList" :key="job">
+            <ion-card>
               <ion-item>
                 <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>{{ job }}</ion-label>
-                <ion-button v-on:click="jobs" fill="outline" slot="end">View</ion-button>
+                <ion-label>Quote Number</ion-label>
+                <ion-button v-on:click="quotes" fill="outline" slot="end">View</ion-button>
               </ion-item>
               <ion-card-content>
-                5 quotes, last updated yesterday.
+                Last updated time.
               </ion-card-content>
             </ion-card>
           </ion-col>
         </ion-row>
       </ion-grid>
+
 
     </ion-content>
   </ion-page>
@@ -53,9 +54,6 @@
   import {
     defineComponent
   } from 'vue';
-  import Vue from 'vue'
-  import VueRouter from 'vue-router'
-
 
   export default defineComponent({
     name: 'Home',
@@ -70,15 +68,13 @@
       IonRow
     },
     methods: {
-      jobs() {
-        this.$router.push({
-          name: 'Jobs'
-        })
+      quotes (){
+        this.$router.push({name: 'Quotes'})
       }
     },
     data() {
-    return {
-      jobsList: ['Job 1', 'Job 2', 'Job 3', 'Job 4']
+      return {
+        quoteList: ['Quote 1', 'Quote 2', 'Quote 3', 'Quote 4']
     }
   }
   });

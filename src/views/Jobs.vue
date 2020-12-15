@@ -21,26 +21,21 @@
       <ion-grid>
         <ion-row>
           <ion-col class="ion-align-self-end">
-            Quote 1
-            
-          </ion-col>
-          <ion-col class="ion-align-self-end">
-            Quote 2
-          </ion-col>
-          <ion-col class="ion-align-self-center">
-            Quote 3
-          </ion-col>
-          <ion-col class="ion-align-self-center">
-            Quote 4
+            <ion-card v-for="quote in quoteList" :key="quote">
+              <ion-item>
+                <ion-icon :icon="pin" slot="start"></ion-icon>
+                <ion-label>{{ quote }}</ion-label>
+                <ion-button v-on:click="quotes" fill="outline" slot="end">View</ion-button>
+              </ion-item>
+              <ion-card-content>
+                5 quotes, last updated yesterday.
+              </ion-card-content>
+            </ion-card>
           </ion-col>
         </ion-row>
       </ion-grid>
 
-      <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with these tacos<a target="_blank" rel="noopener noreferrer"
-            href="https://ionicframework.com/docs/components">UI Components</a></p>
-      </div>
+
     </ion-content>
   </ion-page>
 </template>
@@ -71,7 +66,17 @@
       IonCol,
       IonGrid,
       IonRow
+    },
+    methods: {
+      quotes (){
+        this.$router.push({name: 'Quote'})
+      }
+    },
+    data() {
+      return {
+        quoteList: ['Quote 1', 'Quote 2', 'Quote 3', 'Quote 4']
     }
+  }
   });
 </script>
 
