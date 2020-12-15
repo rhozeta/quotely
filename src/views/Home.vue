@@ -9,7 +9,7 @@
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">QUOTELY has a large penis</ion-title>
+          <ion-title size="large">I like large beef tacos</ion-title>
         </ion-toolbar>
       </ion-header>
     
