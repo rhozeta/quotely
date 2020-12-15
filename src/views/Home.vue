@@ -5,7 +5,7 @@
         <ion-title>Blank</ion-title>
       </ion-toolbar>
     </ion-header>
-    
+
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
@@ -14,57 +14,89 @@
 
         </ion-toolbar>
       </ion-header>
-    
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            Job 1
+          </ion-col>
+          <ion-col>
+            Job 2
+          </ion-col>
+          <ion-col>
+            Job 3
+          </ion-col>
+          <ion-col>
+            Job 4
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
       <div id="container">
         <strong>Ready to create an app?</strong>
-        <p>Start with these tacos<a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+        <p>Start with these tacos<a target="_blank" rel="noopener noreferrer"
+            href="https://ionicframework.com/docs/components">UI Components</a></p>
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'Home',
-  components: {
+  import {
     IonContent,
     IonHeader,
     IonPage,
     IonTitle,
-    IonToolbar
-  }
-});
+    IonToolbar,
+    IonCol,
+    IonGrid,
+    IonRow
+  } from '@ionic/vue';
+  import {
+    defineComponent
+  } from 'vue';
+
+  export default defineComponent({
+    name: 'Home',
+    components: {
+      IonContent,
+      IonHeader,
+      IonPage,
+      IonTitle,
+      IonToolbar,
+      IonCol,
+      IonGrid,
+      IonRow
+    }
+  });
 </script>
 
 <style scoped>
-#container {
-  text-align: center;
-  
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
+  #container {
+    text-align: center;
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  
-  color: #8c8c8c;
-  
-  margin: 0;
-}
+  #container strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
 
-#container a {
-  text-decoration: none;
-}
+  #container p {
+    font-size: 16px;
+    line-height: 22px;
+
+    color: #8c8c8c;
+
+    margin: 0;
+  }
+
+  #container a {
+    text-decoration: none;
+  }
 </style>
