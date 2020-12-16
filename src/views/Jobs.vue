@@ -18,13 +18,13 @@
       <!-- Search Bar -->
       <ion-searchbar animated></ion-searchbar>
       
-      <!-- <ion-grid>
+      <ion-grid>
         <ion-row>
           <ion-col class="ion-align-self-end">
-            <ion-card v-for="(vendorName,index) in vendors" :key="vendorName">
+            <ion-card v-for="vendor in job.vendors" :key="vendor">
               <ion-item>
                 <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>{{ vendorName[index] }}</ion-label>
+                <ion-label>{{ vendor }}</ion-label>
                 <ion-button v-on:click="quotes(vendorName)" fill="outline" slot="end">View</ion-button>
               </ion-item>
               <ion-card-content>
@@ -33,13 +33,8 @@
             </ion-card>
           </ion-col>
         </ion-row>
-      </ion-grid> -->
+      </ion-grid>
 
-    <ul>
-      <li  v-for="vendor in job"  :key="vendor">
-        {{ vendor[0].vendorName }}
-      </li>
-    </ul>
 
     </ion-content>
   </ion-page>
@@ -83,7 +78,8 @@
       return {
 
         jobName: this.$route.params.jobName,
-        job: this.$route.params.job
+        job: this.$route.params.job,
+        jobVendors: this.$route.params.vendors
 
     }
   }

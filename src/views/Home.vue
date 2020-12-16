@@ -37,6 +37,7 @@
             </ion-content>
           </ion-menu>
           <ion-router-outlet id="main"></ion-router-outlet>
+
           <ion-col class="ion-align-self-end">
             <ion-card v-for="job in jobsList" :key="job"
               v-bind:value="{jobName: job.name, jobId: job.id, jobQuotes: job.quotes, jobVendors: job.vendors.vendor}">
@@ -111,11 +112,12 @@
           name: 'Jobs',
           params: {
             jobName: name,
-            job: job
+            job: job,
+            vendors: job.vendors
             
           }
         })
-        console.log(job)
+        console.log(job.vendors[0].vendorName)
  
 
       }
