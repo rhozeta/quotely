@@ -20,6 +20,7 @@
       <ion-grid>
         <ion-row>
               <ion-menu side="start" class="my-custom-menu" menu-id="first" content-id="main">
+                
             <ion-header>
               <ion-toolbar color="primary">
                 <ion-title size="large">Start Menu</ion-title>
@@ -28,6 +29,7 @@
             <ion-content>
               <ion-list>
                 <h2 size = "large" color = "primary">Menu</h2>
+                
                 <ion-item>Recent Quotes</ion-item>
                 <ion-item>Awaiting Approval</ion-item>
                 <ion-item>Awaiting Funds</ion-item>
