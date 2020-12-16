@@ -45,7 +45,7 @@
               <ion-item>
                 <ion-icon :icon="pin" slot="start"></ion-icon>
                 <ion-label><span>{{ job.name }}</span></ion-label>
-                <ion-button v-on:click="jobs(job.name, job.vendors)" fill="outline" slot="end">View</ion-button>
+                <ion-button v-on:click="jobs(job.name, job)" fill="outline" slot="end">View</ion-button>
               </ion-item>
               <ion-card-content>
                 5 quotes, last updated {{job.updated}}
@@ -108,17 +108,17 @@
     },
 
     methods: {
-      jobs(job, vendors) {
+      jobs(name, job) {
         this.$router.push({
           name: 'Jobs',
           params: {
-            jobName: job,
-            vendors: vendors
-
+            jobName: name,
+            job: job
+            
           }
         })
         console.log(job)
-        console.log(vendors)
+ 
 
       }
     },

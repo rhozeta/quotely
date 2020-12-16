@@ -36,8 +36,8 @@
       </ion-grid> -->
 
     <ul>
-      <li  v-for="vendor in vendors" :value="vendor.value" :key="vendor">
-        {{ vendorName.label }}
+      <li  v-for="vendor in job"  :key="vendor">
+        {{ vendor[0].vendorName }}
       </li>
     </ul>
 
@@ -83,7 +83,7 @@
       return {
 
         jobName: this.$route.params.jobName,
-        vendors: this.$route.params.vendors,
+        job: this.$route.params.job
 
     }
   }
