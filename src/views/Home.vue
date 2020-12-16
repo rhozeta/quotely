@@ -19,22 +19,24 @@
       <ion-searchbar animated></ion-searchbar>
       <ion-grid>
         <ion-row>
-              <ion-menu side="start" class="my-custom-menu" menu-id="first" content-id="main">
-                
+          <ion-buttons slot="start"></ion-buttons>
+          <ion-menu side="start" class="my-custom-menu" menu-id="first" content-id="main">
             <ion-header>
               <ion-toolbar color="primary">
                 <ion-title size="large">Start Menu</ion-title>
+
               </ion-toolbar>
             </ion-header>
             <ion-content>
               <ion-list>
-                <h2 size = "large" color = "primary">Menu</h2>
-                
-                <ion-item>Recent Quotes</ion-item>
-                <ion-item>Awaiting Approval</ion-item>
-                <ion-item>Awaiting Funds</ion-item>
-                <ion-item>Users</ion-item>
-                <ion-item>Contact Us</ion-item>
+
+                <h2 size="large" color="primary">Main Menu</h2>
+                <ion-menu-button class="custom-menu-button">Create New Quote</ion-menu-button>
+                <ion-menu-button>Recent Quotes</ion-menu-button>
+                <ion-menu-button>Awaiting Approval</ion-menu-button>
+                <ion-menu-button>Awaiting Funds</ion-menu-button>
+                <ion-menu-button>Users</ion-menu-button>
+                <ion-menu-button>Contact Us</ion-menu-button>
               </ion-list>
             </ion-content>
           </ion-menu>
@@ -62,6 +64,12 @@
 <style>
   .my-custom-menu {
     --width: 300px;
+
+  }
+
+  .custom-menu-button {
+    --border-block-start: 800px;
+    --border-block-end: 800px;
   }
 </style>
 
@@ -114,11 +122,11 @@
           params: {
             jobName: name,
             job: job
-            
+
           }
         })
         console.log(job)
- 
+
 
       }
     },
@@ -129,25 +137,39 @@
 
     data() {
       return {
-        jobsList: [
-        { 
-          id:1, 
-          name:"Job 1", 
-          updated:"2020-10-24 12:10PM", 
-          vendors: 
-            [ {vendorName: "Sage Electric", quotes: [1,2,3]}, 
-              {vendorName: "Dog Electric", quotes: [1,2,3]}
-        ]},
-        { 
-          id:2, 
-          name:"Job 2", 
-          updated:"2020-10-24 12:10PM", 
-          vendors: 
-            [ {vendorName: "Tag Electric", quotes: [1,2,3]}, 
-              {vendorName: "Bag Electric", quotes: [1,2,3]},
-              {vendorName: "Rag Electric", quotes: [1,2,3,4]}
-        ]}
-       
+        jobsList: [{
+            id: 1,
+            name: "Job 1",
+            updated: "2020-10-24 12:10PM",
+            vendors: [{
+                vendorName: "Sage Electric",
+                quotes: [1, 2, 3]
+              },
+              {
+                vendorName: "Dog Electric",
+                quotes: [1, 2, 3]
+              }
+            ]
+          },
+          {
+            id: 2,
+            name: "Job 2",
+            updated: "2020-10-24 12:10PM",
+            vendors: [{
+                vendorName: "Tag Electric",
+                quotes: [1, 2, 3]
+              },
+              {
+                vendorName: "Bag Electric",
+                quotes: [1, 2, 3]
+              },
+              {
+                vendorName: "Rag Electric",
+                quotes: [1, 2, 3, 4]
+              }
+            ]
+          }
+
         ]
       }
     }
