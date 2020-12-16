@@ -71,7 +71,7 @@
     },
 
     methods: {
-      jobs(job: string, vendors) {
+      jobs(job, vendors) {
         this.$router.push({
           name: 'Jobs',
           params: {
@@ -80,8 +80,8 @@
             
           }
         })
-      console.log(job)
-      console.log(vendors)
+        console.log(job)
+        console.log(vendors)
 
       }
     },
@@ -93,17 +93,18 @@
           name:"Job 1", 
           updated:"2020-10-24 12:10PM", 
           vendors: 
-            { vendor1: {vendorName: "Sage Electric", quotes: [1,2,3]}, 
-              vendor2: {vendorName: "Dog Electric", quotes: [1,2,3]}
-        }},
+            [ {vendorName: "Sage Electric", quotes: [1,2,3]}, 
+              {vendorName: "Dog Electric", quotes: [1,2,3]}
+        ]},
         { 
           id:2, 
           name:"Job 2", 
           updated:"2020-10-24 12:10PM", 
           vendors: 
-            { vendor1: {vendor: "Tag Electric", quotes: [1,2,3]}, 
-              vendor2: {vendor: "Big Electric", quotes: [1,2]}
-        }}
+            [ {vendorName: "Tag Electric", quotes: [1,2,3]}, 
+              {vendorName: "Bag Electric", quotes: [1,2,3]},
+              {vendorName: "Rag Electric", quotes: [1,2,3,4]}
+        ]}
        
         ]
     }
