@@ -21,10 +21,10 @@
       <ion-grid>
         <ion-row>
           <ion-col class="ion-align-self-end">
-            <ion-card v-for="quote in quoteList" :key="quote">
+            <ion-card v-for="vendor  in vendors" :key="vendor">
               <ion-item>
                 <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>{{ quote }}</ion-label>
+                <ion-label>{{ vendor.vendorName }}</ion-label>
                 <ion-button v-on:click="quotes" fill="outline" slot="end">View</ion-button>
               </ion-item>
               <ion-card-content>
@@ -34,6 +34,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+
 
 
     </ion-content>
@@ -77,7 +78,8 @@
       return {
 
         jobName: this.$route.params.jobName,
-        quoteList: this.$route.params.quotes
+        vendors: this.$route.params.vendors,
+
     }
   }
   });
