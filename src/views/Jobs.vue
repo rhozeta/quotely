@@ -21,16 +21,18 @@
       <ion-grid>
         <ion-row>
           <ion-col class="ion-align-self-end">
-            <ion-card v-for="vendor in jobVendors" :key="vendor">
+            <div v-for="(vendor) in jobsList" :key="vendor">
+            <ion-card>
               <ion-item>
                 <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>{{ vendor }}</ion-label>
-                <ion-button v-on:click="quotes(vendorName)" fill="outline" slot="end">View</ion-button>
+                <ion-label>{{ vendor.vendors[0].vendorName  }}</ion-label>
+                <ion-button v-on:click="quotes(vendor)" fill="outline" slot="end">View</ion-button>
               </ion-item>
               <ion-card-content>
                 5 quotes, last updated yesterday.
               </ion-card-content>
             </ion-card>
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -63,24 +65,54 @@
       IonPage,
       IonTitle,
       IonToolbar,
-      // IonCol,
-      // IonGrid,
-      // IonRow
+      IonCol,
+      IonGrid,
+      IonRow
     },
     methods: {
       quotes (vendor){
         this.$router.push({name: 'Quote'})
-        console.log(vendor[0].values)
+        console.log(vendor)
       }
     },
 
     data() {
       return {
-
         jobName: this.$route.params.jobName,
-        job: this.$route.params.job,
-        jobVendors: this.$route.params.vendors
+        jobsList: [{
+            id: 1,
+            name: "Job 1",
+            updated: "2020-10-24 12:10PM",
+            vendors: [{
+                vendorName: "Sage Electric",
+                quotes: [1, 2, 3]
+              },
+              {
+                vendorName: "Dog Electric",
+                quotes: [1, 2, 3]
+              }
+            ]
+          },
+          {
+            id: 2,
+            name: "Job 2",
+            updated: "2020-10-24 12:10PM",
+            vendors: [{
+                vendorName: "Tag Electric",
+                quotes: [1, 2, 3]
+              },
+              {
+                vendorName: "Bag Electric",
+                quotes: [1, 2, 3]
+              },
+              {
+                vendorName: "Rag Electric",
+                quotes: [1, 2, 3, 4]
+              }
+            ]
+          }
 
+        ] 
     }
   }
   });

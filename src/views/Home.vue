@@ -19,35 +19,38 @@
       <ion-searchbar animated></ion-searchbar>
       <ion-grid>
         <ion-row>
-              <ion-menu side="start" class="my-custom-menu" menu-id="first" content-id="main">
+          <ion-buttons slot="start"></ion-buttons>
+          <ion-menu side="start" class="my-custom-menu" menu-id="first" content-id="main">
             <ion-header>
               <ion-toolbar color="primary">
                 <ion-title size="large">Start Menu</ion-title>
+
               </ion-toolbar>
             </ion-header>
             <ion-content>
               <ion-list>
-                <h2 size = "large" color = "primary">Menu</h2>
-                <ion-item>Recent Quotes</ion-item>
-                <ion-item>Awaiting Approval</ion-item>
-                <ion-item>Awaiting Funds</ion-item>
-                <ion-item>Users</ion-item>
-                <ion-item>Contact Us</ion-item>
+
+                <h2 size="large" color="primary">Main Menu</h2>
+                <ion-menu-button class="custom-menu-button">Create New Quote</ion-menu-button>
+                <ion-menu-button>Recent Quotes</ion-menu-button>
+                <ion-menu-button>Awaiting Approval</ion-menu-button>
+                <ion-menu-button>Awaiting Funds</ion-menu-button>
+                <ion-menu-button>Users</ion-menu-button>
+                <ion-menu-button>Contact Us</ion-menu-button>
               </ion-list>
             </ion-content>
           </ion-menu>
           <ion-router-outlet id="main"></ion-router-outlet>
 
           <ion-col class="ion-align-self-end">
-            <ion-card v-for="job in jobsList" :key="job"
-              v-bind:value="{jobName: job.name, jobId: job.id, jobQuotes: job.quotes, jobVendors: job.vendors.vendor}">
+            <ion-card v-for="job in jobsList" :key="job">
               <ion-item>
                 <ion-icon :icon="pin" slot="start"></ion-icon>
                 <ion-label><span>{{ job.name }}</span></ion-label>
                 <ion-button v-on:click="jobs(job.name, job)" fill="outline" slot="end">View</ion-button>
               </ion-item>
               <ion-card-content>
-                5 quotes, last updated {{job.updated}}
+                {{ job.vendors.length }} vendors, last updated {{job.updated}}
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -61,6 +64,12 @@
 <style>
   .my-custom-menu {
     --width: 300px;
+
+  }
+
+  .custom-menu-button {
+    --border-block-start: 800px;
+    --border-block-end: 800px;
   }
 </style>
 
@@ -85,7 +94,8 @@
   import VueRouter from 'vue-router'
   import {
     defineComponent
-  } from 'vue'
+  } from 'vue';
+
 
 
 
@@ -107,18 +117,18 @@
     },
 
     methods: {
-      jobs(name, job) {
+      jobs(name, jobObj) {
         this.$router.push({
           name: 'Jobs',
           params: {
             jobName: name,
-            job: job,
-            vendors: job.vendors
+            job: jobObj,
+            vendors: jobObj.vendors 
             
           }
         })
-        console.log(job.vendors[0].vendorName)
- 
+        console.log(jobObj.vendors[0].vendorName)
+        console.log(jobObj.vendors[0].quotes)
 
       }
     },
@@ -129,26 +139,41 @@
 
     data() {
       return {
-        jobsList: [
-        { 
-          id:1, 
-          name:"Job 1", 
-          updated:"2020-10-24 12:10PM", 
-          vendors: 
-            [ {vendorName: "Sage Electric", quotes: [1,2,3]}, 
-              {vendorName: "Dog Electric", quotes: [1,2,3]}
-        ]},
-        { 
-          id:2, 
-          name:"Job 2", 
-          updated:"2020-10-24 12:10PM", 
-          vendors: 
-            [ {vendorName: "Tag Electric", quotes: [1,2,3]}, 
-              {vendorName: "Bag Electric", quotes: [1,2,3]},
-              {vendorName: "Rag Electric", quotes: [1,2,3,4]}
-        ]}
-       
+        jobsList: [{
+            id: 0,
+            name: "Job 1",
+            updated: "2020-10-24 12:10PM",
+            vendors: [{
+                vendorName: "Sage Electric",
+                quotes: [1, 2, 3]
+              },
+              {
+                vendorName: "Dog Electric",
+                quotes: [1, 2, 3]
+              }
+            ]
+          },
+          {
+            id: 1,
+            name: "Job 2",
+            updated: "2020-10-24 12:10PM",
+            vendors: [{
+                vendorName: "Tag Electric",
+                quotes: [1, 2, 3]
+              },
+              {
+                vendorName: "Bag Electric",
+                quotes: [1, 2, 3]
+              },
+              {
+                vendorName: "Rag Electric",
+                quotes: [1, 2, 3, 4]
+              }
+            ]
+          }
+
         ]
+ 
       }
     }
   });
