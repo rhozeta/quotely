@@ -21,7 +21,7 @@
       <ion-grid>
         <ion-row>
           <ion-col class="ion-align-self-end">
-            <ion-card v-for="vendor in job.vendors" :key="vendor">
+            <ion-card v-for="vendor in jobVendors" :key="vendor">
               <ion-item>
                 <ion-icon :icon="pin" slot="start"></ion-icon>
                 <ion-label>{{ vendor }}</ion-label>
