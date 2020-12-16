@@ -19,8 +19,7 @@
       <ion-searchbar animated></ion-searchbar>
       <ion-grid>
         <ion-row>
-                    <ion-menu side="start" class="my-custom-menu" menu-id="first" content-id="main">
-    
+              <ion-menu side="start" class="my-custom-menu" menu-id="first" content-id="main">
             <ion-header>
               <ion-toolbar color="primary">
                 <ion-title size="large">Start Menu</ion-title>
@@ -107,7 +106,7 @@
     },
 
     methods: {
-      jobs(job: string, vendors) {
+      jobs(job, vendors) {
         this.$router.push({
           name: 'Jobs',
           params: {
@@ -119,7 +118,6 @@
         console.log(job)
         console.log(vendors)
 
-
       }
     },
     openCustom() {
@@ -129,37 +127,25 @@
 
     data() {
       return {
-        jobsList: [{
-            id: 1,
-            name: "Job 1",
-            updated: "2020-10-24 12:10PM",
-            vendors: {
-              vendor1: {
-                vendorName: "Sage Electric",
-                quotes: [1, 2, 3]
-              },
-              vendor2: {
-                vendorName: "Dog Electric",
-                quotes: [1, 2, 3]
-              }
-            }
-          },
-          {
-            id: 2,
-            name: "Job 2",
-            updated: "2020-10-24 12:10PM",
-            vendors: {
-              vendor1: {
-                vendor: "Tag Electric",
-                quotes: [1, 2, 3]
-              },
-              vendor2: {
-                vendor: "Big Electric",
-                quotes: [1, 2]
-              }
-            }
-          }
-
+        jobsList: [
+        { 
+          id:1, 
+          name:"Job 1", 
+          updated:"2020-10-24 12:10PM", 
+          vendors: 
+            [ {vendorName: "Sage Electric", quotes: [1,2,3]}, 
+              {vendorName: "Dog Electric", quotes: [1,2,3]}
+        ]},
+        { 
+          id:2, 
+          name:"Job 2", 
+          updated:"2020-10-24 12:10PM", 
+          vendors: 
+            [ {vendorName: "Tag Electric", quotes: [1,2,3]}, 
+              {vendorName: "Bag Electric", quotes: [1,2,3]},
+              {vendorName: "Rag Electric", quotes: [1,2,3,4]}
+        ]}
+       
         ]
       }
     }

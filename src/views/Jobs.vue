@@ -18,14 +18,14 @@
       <!-- Search Bar -->
       <ion-searchbar animated></ion-searchbar>
       
-      <ion-grid>
+      <!-- <ion-grid>
         <ion-row>
           <ion-col class="ion-align-self-end">
-            <ion-card v-for="vendor  in vendors" :key="vendor">
+            <ion-card v-for="(vendorName,index) in vendors" :key="vendorName">
               <ion-item>
                 <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>{{ vendor.vendorName }}</ion-label>
-                <ion-button v-on:click="quotes" fill="outline" slot="end">View</ion-button>
+                <ion-label>{{ vendorName[index] }}</ion-label>
+                <ion-button v-on:click="quotes(vendorName)" fill="outline" slot="end">View</ion-button>
               </ion-item>
               <ion-card-content>
                 5 quotes, last updated yesterday.
@@ -33,9 +33,13 @@
             </ion-card>
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
 
-
+    <ul>
+      <li  v-for="vendor in vendors" :value="vendor.value" :key="vendor">
+        {{ vendorName.label }}
+      </li>
+    </ul>
 
     </ion-content>
   </ion-page>
@@ -64,13 +68,14 @@
       IonPage,
       IonTitle,
       IonToolbar,
-      IonCol,
-      IonGrid,
-      IonRow
+      // IonCol,
+      // IonGrid,
+      // IonRow
     },
     methods: {
-      quotes (){
+      quotes (vendor){
         this.$router.push({name: 'Quote'})
+        console.log(vendor[0].values)
       }
     },
 
