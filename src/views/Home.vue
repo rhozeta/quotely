@@ -42,12 +42,20 @@
           </ion-menu>
           <ion-router-outlet id="main"></ion-router-outlet>
           
+
           <ion-col class="ion-align-self-end">
-          
+
             <ion-card v-for="job in jobsList" :key="job">
               <ion-item>
-                <ion-icon :icon="pin" slot="start"></ion-icon>
+                
+                
                 <ion-label><span>{{ job.name }}</span></ion-label>
+                <div v-if="job.status === 'open'" slot="end">
+                  <ion-icon name="md-bonfire" color="black"></ion-icon>
+                </div>
+                <div v-if="job.status === 'closed'" slot="end">
+                  <ion-icon name="md-remove"></ion-icon>
+                </div>
                 <ion-button v-on:click="jobs(job.name, job.id, job)" fill="outline" slot="end">View</ion-button>
               </ion-item>
               <ion-card-content>
@@ -148,6 +156,7 @@
             id: 0,
             name: "Downtown Arcade Refresh",
             updated: "2020-10-24 12:10PM",
+            status: "open",
             vendors: [{
                 vendorName: "Sage Electric",
                 quotes: [1, 2, 3]
@@ -162,6 +171,7 @@
             id: 1,
             name: "Taunton Road Condo Complex",
             updated: "2020-10-24 12:10PM",
+            status: "closed",
             vendors: [{
                 vendorName: "Tag Electric",
                 quotes: [1, 2, 3]
@@ -218,4 +228,7 @@
   #container a {
     text-decoration: none;
   }
+  ion-icon {
+        font-size: 25px;
+    }
 </style>

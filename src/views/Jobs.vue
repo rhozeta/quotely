@@ -34,11 +34,12 @@
               <div v-for="(job) in selectedJob" :key="job">
                 <ion-card v-for="(vendor) in job.vendors" :key="vendor">
                   <ion-item>
-                    <ion-icon :icon="pin" slot="start"></ion-icon>
+                    <ion-icon name="send" slot="start"></ion-icon>
                     <ion-label>{{ vendor.vendorName }}</ion-label>
                     <ion-button v-on:click="quotes(vendor.vendorName)" fill="outline" slot="end">View</ion-button>
                   </ion-item>
                   <ion-card-content>
+                    <v-icon name="flag"></v-icon>
                     {{vendor.quotes.length}} quotes.
                   </ion-card-content>
                 </ion-card>
@@ -57,12 +58,12 @@
                 <div  v-for="(vendor) in job.vendors" :key="vendor">
                 <ion-card v-for="(quote) in vendor.quotes" :key="quote">
                   <ion-item>
-                    <ion-icon :icon="pin" slot="start"></ion-icon>
-                    <ion-label>{{vendor.vendorName + ": " + quote}}</ion-label>
+                    <ion-label>{{vendor.vendorName + ": " + quote.id}}</ion-label>
                     <ion-button v-on:click="quotes(vendor.vendorName)" fill="outline" slot="end">View</ion-button>
                   </ion-item>
                   <ion-card-content>
-                    Quoted to: {{vendor.vendorName}}
+                    Vendor: {{vendor.vendorName}} <br>
+                    Quoted by {{quote.quotedBy}} on {{quote.dateCreated}}
                   </ion-card-content>
                 </ion-card>
                 </div>
@@ -77,9 +78,11 @@
 
     </ion-content>
   </ion-page>
+
 </template>
 
 <script lang="ts">
+
   import {
     IonContent,
     IonHeader,
@@ -95,7 +98,7 @@
   import {
     defineComponent
   } from 'vue';
-
+  
   export default defineComponent({
     name: 'Home',
     components: {
@@ -140,11 +143,21 @@
             updated: "2020-10-24 12:10PM",
             vendors: [{
                 vendorName: "Sage Electric",
-                quotes: [1, 2, 3, 4, 5]
+                quotes: [
+                  {id: 1, quotedBy:"Raj", dateCreated:"2020-10-24 12:10PM", status:"sent"},
+                  {id: 2, quotedBy:"Raj", dateCreated:"2020-10-26 12:10PM", status:"sent"},
+                  {id: 3, quotedBy:"Raj", dateCreated:"2020-10-26 12:30PM", status:"sent"},
+                  {id: 4, quotedBy:"Jim", dateCreated:"2020-10-30 12:10PM", status:"sent"},
+                  {id: 5, quotedBy:"Raj", dateCreated:"2020-11-01 12:10PM", status:"sent"},
+                  ]
               },
               {
                 vendorName: "Dog Electric",
-                quotes: [1, 2, 3]
+                quotes: [
+                  {id: 1, quotedBy:"Mike", dateCreated:"2020-10-24 12:10PM", status:"sent"},
+                  {id: 2, quotedBy:"Raj", dateCreated:"2020-10-26 12:10PM", status:"sent"},
+                  {id: 3, quotedBy:"Larry", dateCreated:"2020-10-26 12:30PM", status:"sent"}
+                  ]
               }
             ]
           },
@@ -154,15 +167,31 @@
             updated: "2020-10-24 12:10PM",
             vendors: [{
                 vendorName: "Tag Electric",
-                quotes: [1, 2, 3]
+                quotes: [
+                  {id: 1, quotedBy:"Kim", dateCreated:"2020-10-24 12:10PM", status:"sent"},
+                  {id: 2, quotedBy:"Raj", dateCreated:"2020-10-26 12:10PM", status:"sent"},
+                  {id: 3, quotedBy:"Mike", dateCreated:"2020-10-26 12:30PM", status:"sent"},
+                  {id: 4, quotedBy:"Jim", dateCreated:"2020-10-30 12:10PM", status:"sent"},
+                  ]
               },
               {
                 vendorName: "Bag Electric",
-                quotes: [1, 2]
+                quotes: [
+                  {id: 1, quotedBy:"Gary", dateCreated:"2020-10-24 12:10PM", status:"sent"},
+                  {id: 2, quotedBy:"Mark", dateCreated:"2020-10-26 12:10PM", status:"sent"},
+                  {id: 3, quotedBy:"Raj", dateCreated:"2020-10-26 12:30PM", status:"sent"},
+                  {id: 4, quotedBy:"Nick", dateCreated:"2020-10-30 12:10PM", status:"sent"},
+                  {id: 5, quotedBy:"Chris", dateCreated:"2020-11-01 12:10PM", status:"sent"},
+                  {id: 5, quotedBy:"Chris", dateCreated:"2020-11-01 12:10PM", status:"sent"},
+                  {id: 5, quotedBy:"Chris", dateCreated:"2020-11-01 12:10PM", status:"sent"}
+                  ]
               },
               {
                 vendorName: "Rag Electric",
-                quotes: [1, 2, 3, 4]
+                quotes: [
+                  {id: 1, quotedBy:"Gary", dateCreated:"2020-10-24 12:10PM", status:"sent"},
+                  {id: 2, quotedBy:"Nick", dateCreated:"2020-10-26 12:10PM", status:"sent"}
+                  ]
               }
             ]
           }
