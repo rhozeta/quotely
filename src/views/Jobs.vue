@@ -10,7 +10,7 @@
       <ion-header collapse="condense">
         <ion-toolbar>
 
-          <ion-title size="large">Hello my assholes`</ion-title>
+          <ion-title size="large">Hello my butthole`</ion-title>
 
         </ion-toolbar>
       </ion-header>
