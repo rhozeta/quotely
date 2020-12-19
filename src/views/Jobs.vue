@@ -17,28 +17,63 @@
 
       <!-- Search Bar -->
       <ion-searchbar animated></ion-searchbar>
-      
-      <ion-grid>
-        <ion-row>
-          <ion-col class="ion-align-self-end">
-    
-              <div  v-for="(job) in selectedJob" :key="job"> 
-            <ion-card v-for="(vendor) in job.vendors" :key="vendor" >
-              <ion-item>
-                <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>{{ vendor.vendorName }}</ion-label>
-                <ion-button v-on:click="quotes(vendor.vendorName)" fill="outline" slot="end">View</ion-button>
-              </ion-item>
-              <ion-card-content>
-                {{vendor.quotes.length}} quotes.
-              </ion-card-content>
-            </ion-card>
-            
-             </div>
-           
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+
+      <ion-segment  value="byVendor" v-model="filter">
+        <ion-segment-button value="byVendor">
+          <ion-label>Vendors</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="byQuote">
+          <ion-label>Quotes</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      <div v-if="filter == 'byVendor'">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="ion-align-self-end">
+              <div v-for="(job) in selectedJob" :key="job">
+                <ion-card v-for="(vendor) in job.vendors" :key="vendor">
+                  <ion-item>
+                    <ion-icon :icon="pin" slot="start"></ion-icon>
+                    <ion-label>{{ vendor.vendorName }}</ion-label>
+                    <ion-button v-on:click="quotes(vendor.vendorName)" fill="outline" slot="end">View</ion-button>
+                  </ion-item>
+                  <ion-card-content>
+                    {{vendor.quotes.length}} quotes.
+                  </ion-card-content>
+                </ion-card>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <div v-else>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="ion-align-self-end">
+
+              <div v-for="(job) in selectedJob" :key="job">
+                <div  v-for="(vendor) in job.vendors" :key="vendor">
+                <ion-card v-for="(quote) in vendor.quotes" :key="quote">
+                  <ion-item>
+                    <ion-icon :icon="pin" slot="start"></ion-icon>
+                    <ion-label>{{vendor.vendorName + ": " + quote}}</ion-label>
+                    <ion-button v-on:click="quotes(vendor.vendorName)" fill="outline" slot="end">View</ion-button>
+                  </ion-item>
+                  <ion-card-content>
+                    Quoted to: {{vendor.vendorName}}
+                  </ion-card-content>
+                </ion-card>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+
+
 
     </ion-content>
   </ion-page>
@@ -53,7 +88,9 @@
     IonToolbar,
     IonCol,
     IonGrid,
-    IonRow
+    IonRow,
+    IonSegment,
+    IonSegmentButton
   } from '@ionic/vue';
   import {
     defineComponent
@@ -69,27 +106,35 @@
       IonToolbar,
       // IonCol,
       // IonGrid,
-      // IonRow
+      // IonRow,
+      IonSegment,
+      IonSegmentButton
     },
     methods: {
-      quotes (vendor){
+      quotes(vendor) {
         this.$router.push({
           name: 'Quote',
           params: {
             vendor: vendor,
             jobName: this.$route.params.jobName
           }
-          })
+        })
+      },
+      segmentChanged(ev: CustomEvent) {
+        
+        this.filter= ev.detail.value
+        console.log(this.filter)
       }
     },
- 
+
     data() {
       return {
         jobName: this.$route.params.jobName,
         jobNum: this.$route.params.jobNum,
         job: this.$route.params.job as object,
         vendors: this.$route.params.vendors,
-         jobsList: [{
+        filter: "byVendor",
+        jobsList: [{
             id: 0,
             name: "Downtown Arcade Refresh",
             updated: "2020-10-24 12:10PM",
@@ -123,16 +168,16 @@
           }
 
         ]
+      }
+    },
+    computed: {
+      selectedJob: function () {
+        const name = this.$route.params.jobName
+        const job = this.jobsList.filter(job => job.name === name)
+        console.log(job)
+        return job
+      }
     }
-  },
-  computed: {
-  selectedJob: function () {
-    const name = this.$route.params.jobName
-    const job = this.jobsList.filter(job => job.name === name)
-    console.log(job)
-    return job
-  }
-}
 
   });
 </script>
