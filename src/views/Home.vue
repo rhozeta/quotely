@@ -41,18 +41,20 @@
             </ion-content>
           </ion-menu>
           <ion-router-outlet id="main"></ion-router-outlet>
-
+          
           <ion-col class="ion-align-self-end">
+          
             <ion-card v-for="job in jobsList" :key="job">
               <ion-item>
                 <ion-icon :icon="pin" slot="start"></ion-icon>
                 <ion-label><span>{{ job.name }}</span></ion-label>
-                <ion-button v-on:click="jobs(job.name, job)" fill="outline" slot="end">View</ion-button>
+                <ion-button v-on:click="jobs(job.name, job.id, job)" fill="outline" slot="end">View</ion-button>
               </ion-item>
               <ion-card-content>
                 {{ job.vendors.length }} vendors, last updated {{job.updated}}
               </ion-card-content>
             </ion-card>
+
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -117,18 +119,21 @@
     },
 
     methods: {
-      jobs(name, jobObj) {
+      jobs(name, id, jobObj) {
         this.$router.push({
           name: 'Jobs',
           params: {
             jobName: name,
-            job: jobObj,
-            vendors: jobObj.vendors 
+            jobNum: id,
+            job: jobObj as object,
+            vendors: jobObj.vendors
+  
             
           }
         })
-        console.log(jobObj.vendors[0].vendorName)
-        console.log(jobObj.vendors[0].quotes)
+
+        console.log(jobObj.vendors)
+        console.log(jobObj)
 
       }
     },
@@ -141,7 +146,7 @@
       return {
         jobsList: [{
             id: 0,
-            name: "Job 1",
+            name: "Downtown Arcade Refresh",
             updated: "2020-10-24 12:10PM",
             vendors: [{
                 vendorName: "Sage Electric",
@@ -155,7 +160,7 @@
           },
           {
             id: 1,
-            name: "Job 2",
+            name: "Taunton Road Condo Complex",
             updated: "2020-10-24 12:10PM",
             vendors: [{
                 vendorName: "Tag Electric",
@@ -174,6 +179,12 @@
 
         ]
  
+      }
+    },
+    computed: {
+      groupedJobs(){
+        const jobs = this.jobsList
+        return jobs.chunk(this.jobs, 3)
       }
     }
   });

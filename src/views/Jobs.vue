@@ -21,22 +21,24 @@
       <ion-grid>
         <ion-row>
           <ion-col class="ion-align-self-end">
-            <div v-for="(vendor) in jobsList" :key="vendor">
-            <ion-card>
+    
+              <div  v-for="(job) in selectedJob" :key="job"> 
+            <ion-card v-for="(vendor) in job.vendors" :key="vendor" >
               <ion-item>
                 <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>{{ vendor.vendors[0].vendorName  }}</ion-label>
-                <ion-button v-on:click="quotes(vendor)" fill="outline" slot="end">View</ion-button>
+                <ion-label>{{ vendor.vendorName }}</ion-label>
+                <ion-button v-on:click="quotes(vendor.vendorName)" fill="outline" slot="end">View</ion-button>
               </ion-item>
               <ion-card-content>
-                5 quotes, last updated yesterday.
+                {{vendor.quotes.length}} quotes.
               </ion-card-content>
             </ion-card>
-            </div>
+            
+             </div>
+           
           </ion-col>
         </ion-row>
       </ion-grid>
-
 
     </ion-content>
   </ion-page>
@@ -65,27 +67,35 @@
       IonPage,
       IonTitle,
       IonToolbar,
-      IonCol,
-      IonGrid,
-      IonRow
+      // IonCol,
+      // IonGrid,
+      // IonRow
     },
     methods: {
       quotes (vendor){
-        this.$router.push({name: 'Quote'})
-        console.log(vendor)
+        this.$router.push({
+          name: 'Quote',
+          params: {
+            vendor: vendor,
+            jobName: this.$route.params.jobName
+          }
+          })
       }
     },
-
+ 
     data() {
       return {
         jobName: this.$route.params.jobName,
-        jobsList: [{
-            id: 1,
-            name: "Job 1",
+        jobNum: this.$route.params.jobNum,
+        job: this.$route.params.job as object,
+        vendors: this.$route.params.vendors,
+         jobsList: [{
+            id: 0,
+            name: "Downtown Arcade Refresh",
             updated: "2020-10-24 12:10PM",
             vendors: [{
                 vendorName: "Sage Electric",
-                quotes: [1, 2, 3]
+                quotes: [1, 2, 3, 4, 5]
               },
               {
                 vendorName: "Dog Electric",
@@ -94,8 +104,8 @@
             ]
           },
           {
-            id: 2,
-            name: "Job 2",
+            id: 1,
+            name: "Taunton Road Condo Complex",
             updated: "2020-10-24 12:10PM",
             vendors: [{
                 vendorName: "Tag Electric",
@@ -103,7 +113,7 @@
               },
               {
                 vendorName: "Bag Electric",
-                quotes: [1, 2, 3]
+                quotes: [1, 2]
               },
               {
                 vendorName: "Rag Electric",
@@ -112,9 +122,18 @@
             ]
           }
 
-        ] 
+        ]
     }
+  },
+  computed: {
+  selectedJob: function () {
+    const name = this.$route.params.jobName
+    const job = this.jobsList.filter(job => job.name === name)
+    console.log(job)
+    return job
   }
+}
+
   });
 </script>
 

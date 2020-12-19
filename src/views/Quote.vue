@@ -21,10 +21,10 @@
       <ion-grid>
         <ion-row>
           <ion-col class="ion-align-self-end">
-            <ion-card>
+            <ion-card v-for="quote in selectedJob.quotes" :key="quote">
               <ion-item>
                 <ion-icon :icon="pin" slot="start"></ion-icon>
-                <ion-label>Quote Number</ion-label>
+                <ion-label>{{quote}}</ion-label>
                 <ion-button v-on:click="quotes" fill="outline" slot="end">View</ion-button>
               </ion-item>
               <ion-card-content>
@@ -74,9 +74,52 @@
     },
     data() {
       return {
-        quoteList: ['Quote 1', 'Quote 2', 'Quote 3', 'Quote 4']
+        quoteList: ['Quote 1', 'Quote 2', 'Quote 3', 'Quote 4'],
+        jobsList: [{
+            id: 0,
+            name: "Job 1",
+            updated: "2020-10-24 12:10PM",
+            vendors: [{
+                vendorName: "Sage Electric",
+                quotes: [1, 2, 3, 4, 5]
+              },
+              {
+                vendorName: "Dog Electric",
+                quotes: [1, 2, 3]
+              }
+            ]
+          },
+          {
+            id: 1,
+            name: "Job 2",
+            updated: "2020-10-24 12:10PM",
+            vendors: [{
+                vendorName: "Tag Electric",
+                quotes: [1, 2, 3]
+              },
+              {
+                vendorName: "Bag Electric",
+                quotes: [1, 2]
+              },
+              {
+                vendorName: "Rag Electric",
+                quotes: [1, 2, 3, 4]
+              }
+            ]
+          }
+
+        ]
     }
+  },
+    computed: {
+    selectedJob: function () {
+      const vendor = this.$route.params.vendor
+      const name = this.$route.params.jobName
+      const job = this.jobsList.filter( job => job.vendors.vendorName === vendor)
+      console.log(job)
+      return job
   }
+}
   });
 </script>
 
